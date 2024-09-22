@@ -1,11 +1,16 @@
-// server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const atob = require('atob');  // To decode Base64 files
 const app = express();
 const cors = require('cors');
+
 app.use(bodyParser.json());
 app.use(cors()); // Ensure this is included in your backend
+
+// GET Method for root
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Welcome to the backend API' });
+});
 
 // POST Method to process data
 app.post('/bfhl', (req, res) => {
@@ -55,7 +60,7 @@ app.post('/bfhl', (req, res) => {
     res.status(200).json(response);
 });
 
-// GET Method
+// GET Method for /bfhl
 app.get('/bfhl', (req, res) => {
     res.status(200).json({
         operation_code: 1
